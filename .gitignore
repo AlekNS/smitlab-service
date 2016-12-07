@@ -1,0 +1,11 @@
+/.idea
+/nbproject
+/build
+/SmitlabService
+/SmitlabService.log
+/runit
+/runit.bat
+libspaths.py
+*.pyc
+.lock-waf_*
+*.h.gch

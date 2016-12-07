@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smitlab_service>
+    <analyzers_host>
+        <interface>0.0.0.0</interface>
+        <port>28080</port>
+        <max_requests>50</max_requests>
+    </analyzers_host>
+    <analyzers_secure_host>
+        <disabled />
+        <interface>0.0.0.0</interface>
+        <port>28443</port>
+        <max_requests>50</max_requests>
+        <ca>c:\ProgramData\SmitlabService\ssl\ca.crt</ca>
+        <crt>c:\ProgramData\SmitlabService\ssl\smitlab_service.pem</crt>
+        <key>c:\ProgramData\SmitlabService\ssl\smitlab_service.pem</key>
+    </analyzers_secure_host>
+    <web_application>
+        <uri>https://smitlab.org:8080/api</uri>
+        <username>smitlabservice</username>
+        <password>smit1abservice</password>
+    </web_application>
+    <logging>
+        <formatters>
+            <fullFormat>
+                <class>PatternFormatter</class>
+                <pattern>%Y-%m-%d %H:%M:%S %T - %s [%q] : %t</pattern>
+                <times>local</times>
+            </fullFormat>
+        </formatters>
+        <loggers>
+            <root>
+                <channel>dual</channel>
+                <level>information</level>
+            </root>
+        </loggers>
+        <channels>
+            <console>
+                <class>ConsoleChannel</class>
+                <formatter>fullFormat</formatter>
+            </console>
+            <file>
+                <class>FileChannel</class>
+                <formatter>fullFormat</formatter>
+                <path>c:\ProgramData\SmitlabService\SmitlabService.log</path>
+                <rotation>1 M</rotation>
+                <compress>true</compress>
+                <archive>timestamp</archive>
+            </file>
+            <dual>
+                <class>SplitterChannel</class>
+                <channels>console,file</channels>
+            </dual>
+        </channels>
+    </logging>
+    <analyzers>
+        <storages>
+            <path>c:\ProgramData\SmitlabService\storages\</path>
+        </storages>
+        <list>
+            <beckman_diff2_fde19f91b873450ba14fac0748022ff8>
+                <type>beckman_culture_act_d_2</type>
+                <title>Beckman D#2</title>
+                <!-- <disabled /> -->
+                <communication>
+                    <type>serialport</type>
+                    <serial_timeout_enq_ms>500</serial_timeout_enq_ms>
+                    <serial_port>com2</serial_port>
+                    <serial_baud>9600</serial_baud>
+                    <serial_data>8</serial_data>
+                    <serial_parity>none</serial_parity>
+                    <serial_stop>1</serial_stop>
+                    <serial_timeouts>5000</serial_timeouts>
+                </communication>
+            </beckman_diff2_fde19f91b873450ba14fac0748022ff8>
+        </list>
+    </analyzers>
+</smitlab_service>
