@@ -1,0 +1,19 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+import sys
+
+def build(bld):
+    lib = bld.shlib(
+        target='../advia60',
+        source=[
+            'Advia60ResultReader.cpp',
+            'Advia60.cpp',
+        ],
+        libpath  =bld.env.libs_shared,
+        lib      =bld.env.libs_shared_link,
+        use=['includes', 'analyzer', 'serialport', 'common']
+    )
+
+    if sys.platform.find('win') < 0:
+        bld.env.append_value('CXXFLAGS', '-fPIC');
